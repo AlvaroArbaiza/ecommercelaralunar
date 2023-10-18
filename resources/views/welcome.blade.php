@@ -46,28 +46,42 @@
 
                                 {{-- product image --}}
                                 <div class="product-image">
+
+                                    {{-- image --}}
                                     <a href="#" class="image">
                                         <img src="{{ $product->getmedia('images')->first()->getUrl() }}">
                                     </a>
+
+                                    {{-- discount --}}
                                     <span class="product-discount-label">-23%</span>
+
+                                    {{-- links --}}
                                     <ul class="product-links">
                                         <li><a href="#"><i class="fa fa-search"></i></a></li>
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-random"></i></a></li>
                                     </ul>
+
+                                    {{-- add to cart --}}
                                     <a href="" class="add-to-cart">Add to Cart</a>
                                 </div>
 
                                 {{-- product contetn --}}
                                 <div class="product-content">
+
+                                    {{-- title --}}
                                     <h3 class="title">
                                         <a href="#">
                                             {{json_decode                       ($product->attribute_data)->name->en }}
                                         </a>
                                     </h3>
+
+                                    {{-- price --}}
                                     <div class="price">
-                                        ${{ $product->prices()->get()->first()->value('price')->decimal() }} 
-                                        <span>$68.88</span>
+                                        ${{ $product->prices()->get()->first()->price->decimal() }} 
+                                        <span>
+                                            ${{ $product->prices()->get()->first()->compare_price->decimal() }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>

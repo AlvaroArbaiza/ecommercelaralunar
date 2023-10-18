@@ -36,12 +36,15 @@
         
             <div class="row w-100">
 
+                {{-- se producst esiste parte con il ciclo --}}
                 @if($products)
                     @foreach ($products as $product)
-                        {{-- @dd( $product->getmedia('images')->first()->getUrl() )  --}}
-                        {{-- json_decode($product->attribute_data)->name->en --}}
+                        {{-- @dd($product->prices()->get()->first()->value('price')->decimal()) --}}
+                    
                         <div class="col-4">
                             <div class="product-grid">
+
+                                {{-- product image --}}
                                 <div class="product-image">
                                     <a href="#" class="image">
                                         <img src="{{ $product->getmedia('images')->first()->getUrl() }}">
@@ -54,13 +57,18 @@
                                     </ul>
                                     <a href="" class="add-to-cart">Add to Cart</a>
                                 </div>
+
+                                {{-- product contetn --}}
                                 <div class="product-content">
                                     <h3 class="title">
                                         <a href="#">
                                             {{json_decode                       ($product->attribute_data)->name->en }}
                                         </a>
                                     </h3>
-                                    <div class="price">$53.55 <span>$68.88</span></div>
+                                    <div class="price">
+                                        ${{ $product->prices()->get()->first()->value('price')->decimal() }} 
+                                        <span>$68.88</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
